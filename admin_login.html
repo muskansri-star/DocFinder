@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - DocFinder</title>
+  <link rel="stylesheet" href="style.css">
+
+   <style>
+    /* Admin login form container */
+    .login-container {
+      max-width: 400px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .login-container h2 {
+      text-align: center;
+      color: #05696b;
+      margin-bottom: 20px;
+    }
+
+    .login-container label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 12px;
+      background: #05696b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-container button:hover {
+      background: #034d4f;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <img src="images/flogo1.png" alt="DocFinder Logo" style="float:left;width:86px;height:86px;">
+    <h1 style="text-align: center;">DocFinder</h1>
+    <h5 style="text-align: center;">Find the right doctor, anytime, anywhere</h5>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <!-- Admin icon on the left -->
+    <a href="admin_login.html" class="admin-link"><i class="fas fa-user-shield"></i>🧑🏻‍💼</a>
+    
+    <a href="base.html">Home</a>
+    <a href="home.html">About us</a>
+    <a href="signup.html">Login/Signup</a>
+    <a href="/doctors/">Find Doctors</a>  
+  </nav>
+
+  <!-- Admin Login Form -->
+  <div class="login-container">
+    <h2>Admin Login</h2>
+    <form onsubmit="return handleAdminLogin(event)">
+      <label for="admin-username">Username:</label>
+      <input type="text" id="admin-username" name="username" placeholder="Enter admin username" required>
+
+      <label for="admin-password">Password:</label>
+      <input type="password" id="admin-password" name="password" placeholder="Enter password" required>
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 DocFinder | All Rights Reserved</p>
+  </footer>
+
+  <!-- Admin login JS -->
+  <script>
+    function handleAdminLogin(event) {
+      event.preventDefault();
+      let username = document.getElementById("admin-username").value;
+      let password = document.getElementById("admin-password").value;
+
+      //  check  (backend)
+      if (username === "admin" && password === "admin123") {
+        alert("Welcome Admin!");
+        window.location.href = "admin_dash.html";
+      } else {
+        alert("Invalid Admin LOGIN!");
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>

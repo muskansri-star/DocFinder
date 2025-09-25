@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - DocFinder</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dashboard-container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      color: #05696b;
+    }
+
+    .card p {
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .card button {
+      background: #05696b;
+      color: #fff;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .card button:hover {
+      background: #034d4f;
+    }
+
+    .dashboard-header {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    .dashboard-header h2 {
+      color: #05696b;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="images/flogo1.png" alt="DocFinder Logo" style="float:left;width:86px;height:86px;">
+    <h1 style="text-align: center;">DocFinder</h1>
+    <h5 style="text-align: center;">Admin Dashboard</h5>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="base.html">Home</a>
+    <a href="home.html">About Us</a>
+    <a href="admin_login.html">Logout</a>
+  </nav>
+
+  <!-- Dashboard Section -->
+  <div class="dashboard-header">
+    <h2>Welcome, Admin 👨‍💻</h2>
+    <p>Manage doctors, patients, and system reports in one place.</p>
+  </div>
+
+  <div class="dashboard-container">
+    <!-- Manage Doctors -->
+    <div class="card">
+      <h3>👨‍⚕️ Manage Doctors</h3>
+      <p>Add, update, or remove doctor profiles.</p>
+      <button onclick="alert('Doctor management feature coming soon!')">Manage</button>
+    </div>
+
+    <!-- Manage Patients -->
+    <div class="card">
+      <h3>🧑‍🤝‍🧑 Manage Patients</h3>
+      <p>View patient details, deactivate or update accounts.</p>
+      <button onclick="alert('Patient management feature coming soon!')">Manage</button>
+    </div>
+
+    <!-- Appointments -->
+    <div class="card">
+      <h3>📅 View All Appointments</h3>
+      <p>Track all booked appointments across the system.</p>
+      <button onclick="alert('Appointments feature coming soon!')">View</button>
+    </div>
+
+    <!-- Payments and Reports -->
+    <div class="card">
+      <h3>💳 Payments & Reports</h3>
+      <p>Monitor transactions and generate reports.</p>
+      <button onclick="alert('Reports feature coming soon!')">View Reports</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 DocFinder | All Rights Reserved</p>
+  </footer>
+</body>
+</html>

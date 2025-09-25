@@ -1,3 +1,4 @@
+
 body {
   font-family: 'Times New Roman', Times, serif, sans-serif;
   margin: 0;
@@ -28,6 +29,14 @@ nav a{
 
 nav a:hover {
   text-decoration: underline;
+}
+.admin-link {
+  font-weight: bold;
+  color: white; /* Yellow to highlight admin */
+}
+
+.admin-link i {
+  margin-right: 5px;
 }
 
 footer {
