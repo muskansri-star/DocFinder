@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authentication - DocFinder</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/form.css' %}">
+  <style>
+    /* Tabs */
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .tab-buttons button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      background: #ccc;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .tab-buttons button.active {
+      background: #05696b;
+      color: white;
+    }
+
+    /* Tab content */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src= "{%static 'images/flogo1.png'%}" alt="DocFinder Logo" style="float:left;width:86px;height:86px;">
+    <h1 style="text-align: center;">DocFinder</h1>
+    <h5 style="text-align: center;">Find the right doctor, anytime, anywhere</h5>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="{% url 'base' %}">Home</a>
+    <a href="{% url 'home' %}">About us</a>
+    <a href="{% url 'signup' %}">Login/Signup</a>
+    <a href="doctors.html">Find Doctors</a>  
+  </nav>
+
+  <!-- Authentication Section -->
+  <div class="form-container">
+    <!-- Tab Buttons -->
+    <div class="tab-buttons">
+      <button id="loginTab" class="active" onclick="showTab('login')">Login</button>
+      <button id="signupTab" onclick="showTab('signup')">Sign Up</button>
+    </div>
+
+    
+    <!-- Login Form -->
+<div id="login" class="tab-content active">
+  <h2>Login</h2>
+  <form onsubmit="return handleLogin(event)"> <!-- Added JS handler -->
+    <label for="login-role">I am a:</label>
+    <select id="login-role" name="role" required>
+      <option value="">-- Select Role --</option>
+      <option value="doctor">Doctor</option>
+      <option value="patient">Patient</option>
+    </select>
+
+    <label for="login-username">Username:</label>
+    <input type="text" id="login-username" name="username" placeholder="Enter username" required>
+
+    <label for="login-password">Password:</label>
+    <input type="password" id="login-password" name="password" placeholder="Enter password" required>
+
+    <button type="submit">Login</button>
+  </form>
+</div>
+    
+    <!-- Signup Form -->
+<div id="signup" class="tab-content">
+      <h2>Sign Up</h2>
+      <form>
+        <label for="signup-role">I am a:</label>
+        <select id="signup-role" name="role" required>
+          <option value="">-- Select Role --</option>
+          <option value="doctor">Doctor</option>
+          <option value="patient">Patient</option>
+        </select>
+
+        <label for="signup-username">Username:</label>
+        <input type="text" id="signup-username" name="username" placeholder="Enter username" required>
+
+        <label for="signup-password">Password:</label>
+        <input type="password" id="signup-password" name="password" placeholder="Enter password" required>
+
+        <label for="signup-confirm">Confirm Password:</label>
+        <input type="password" id="signup-confirm" name="confirm" placeholder="Re-enter password" required>
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 DocFinder | All Rights Reserved</p>
+  </footer>
+
+  <!-- JavaScript for Tabs -->
+  
+  <script>
+  function showTab(tabName) {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
+
+    // Show selected tab
+    document.getElementById(tabName).classList.add('active');
+    document.getElementById(tabName + 'Tab').classList.add('active');
+  }
+
+  // Handle login redirection
+  function handleLogin(event) {
+    event.preventDefault(); // Prevent page reload
+
+    let role = document.getElementById("login-role").value;
+    let username = document.getElementById("login-username").value;
+    let password = document.getElementById("login-password").value;
+
+    if (role === "" || username === "" || password === "") {
+      alert("Please fill all fields.");
+      return false;
+    }
+
+    // login validation
+    if (role === "doctor") {
+      alert("Welcome Doctor " + username + "!");
+      window.location.href = "doctor_dash.html";  // Redirect to doctor dashboard
+    } else if (role === "patient") {
+      alert("Welcome Patient " + username + "!");
+      window.location.href = "patient_dash.html"; // Redirect to patient dashboard
+    } else {
+      alert("Invalid role selected!");
+    }
+
+    return false;
+  }
+</script>
+
+</body>
+</html>

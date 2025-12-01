@@ -1,15 +1,16 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DocFinder - Home</title>
-  <link rel="stylesheet" href="stylehome.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
   <!-- Header -->
   <header>
-    <img src="images/flogo1.png" alt="Find the right doctor, anytime, anywhere" style="float:left;width:86px;height:86px;">
+    <img src="{%static 'images/flogo1.png'%}" alt="Find the right doctor, anytime, anywhere" style="float:left;width:86px;height:86px;">
 
     <h1 style="text-align: center;">DocFinder</h1>
     <h5 style="text-align: center;">Find the right doctor, anytime, anywhere</h5>
@@ -18,10 +19,10 @@
 
   <!-- Navigation -->
   <nav> 
-      <a href="base.html">Home</a>
-      <a href="home.html">About us</a>
-      <a href="signup.html">Login/Sign Up</a>
-     <!---- <a href="base.html">Base</a>-->
+    <a href="{% url 'base' %}">Home</a>
+    <a href="{% url 'home' %}">About us</a>
+    <a href="{% url 'signup' %}">Login/Signup</a>
+     <!-- <a href="base.html">Base</a>-->
       <a href="#">Find Doctors</a>
   </nav>
 

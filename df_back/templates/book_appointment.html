@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment - DocFinder</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .appointment-container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .appointment-container h2 {
+      text-align: center;
+      color: #05696b;
+      margin-bottom: 20px;
+    }
+
+    .appointment-container label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    .appointment-container input,
+    .appointment-container select,
+    .appointment-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .appointment-container button {
+      width: 100%;
+      padding: 12px;
+      background: #05696b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .appointment-container button:hover {
+      background: #034d4f;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="images/flogo1.png" alt="DocFinder Logo" style="float:left;width:86px;height:86px;">
+    <h1 style="text-align: center;">DocFinder</h1>
+    <h5 style="text-align: center;">Book Your Appointment Easily</h5>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="patient_dash.html">Your Profile</a>
+    <a href="base.html">Home</a>
+    <a href="home.html">About us</a>
+    <a href="doctors.html">Find Doctors</a>  
+
+  </nav>
+
+  <!-- Appointment Form -->
+  <div class="appointment-container">
+    <h2>Book an Appointment</h2>
+    <form onsubmit="return submitAppointment(event)">
+      <label for="doctor">Select Doctor:</label>
+      <select id="doctor" required>
+        <option value="">-- Select Doctor --</option>
+        <option>Dr. Anand Mishra - Physician</option>
+        <option>Dr. Pooja Choubey - Dermatologist</option>
+        <option>Dr. Rakesh Paswan - Neurologist</option>
+        
+      </select>
+
+      <label for="patient-name">Full Name:</label>
+      <input type="text" id="patient-name" placeholder="Enter your full name" required>
+
+      <label for="patient-age">Age:</label>
+      <input type="number" id="patient-age" placeholder="Enter your age" required>
+
+      <label for="patient-gender">Gender:</label>
+      <select id="patient-gender" required>
+        <option value="">-- Select Gender --</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+
+      <label for="patient-contact">Contact Number:</label>
+      <input type="text" id="patient-contact" placeholder="Enter contact number" required>
+
+      <label for="patient-symptoms">Symptoms / Reason:</label>
+      <textarea id="patient-symptoms" rows="4" placeholder="Describe your symptoms" required></textarea>
+
+      <label for="appointment-date">Preferred Date:</label>
+      <input type="date" id="appointment-date" required>
+
+      <label for="appointment-time">Preferred Time:</label>
+      <input type="time" id="appointment-time" required>
+
+      <button type="submit">Book Appointment</button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 DocFinder | All Rights Reserved</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    function submitAppointment(event) {
+      event.preventDefault();
+
+      let doctor = document.getElementById("doctor").value;
+      let name = document.getElementById("patient-name").value;
+      let age = document.getElementById("patient-age").value;
+      let gender = document.getElementById("patient-gender").value;
+      let contact = document.getElementById("patient-contact").value;
+      let symptoms = document.getElementById("patient-symptoms").value;
+      let date = document.getElementById("appointment-date").value;
+      let time = document.getElementById("appointment-time").value;
+
+      if (!doctor || !name || !age || !gender || !contact || !symptoms || !date || !time) {
+        alert("Please fill all fields!");
+        return false;
+      }
+
+      // Simulated booking
+      alert(`Appointment booked successfully!\nDoctor: ${doctor}\nPatient: ${name}\nDate: ${date} at ${time}`);
+      
+      // Clear form
+      document.querySelector("form").reset();
+
+      return false;
+    }
+  </script>
+</body>
+</html>
