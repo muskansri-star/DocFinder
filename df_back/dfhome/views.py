@@ -19,3 +19,6 @@ def doctor_dash(request):
 
 def patient_dash(request):
     return render(request,'patient_dash.html')
+
+def find_doctor(request):
+    return render(request,'find_doctors.html')
