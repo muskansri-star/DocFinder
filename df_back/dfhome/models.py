@@ -49,3 +49,17 @@ class Doctor(models.Model):
 
     def __str__(self):
         return self.name
+    
+    
+
+
+class Appointment(models.Model):
+ patient = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
+ doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+ appointment_date = models.DateField()
+ appointment_time = models.TimeField()
+ symptoms = models.TextField(blank=True, null=True)
+ created_at = models.DateTimeField(auto_now_add=True)
+
+def __str__(self):
+        return f"{self.patient.email} → {self.doctor.name}"

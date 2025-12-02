@@ -41,7 +41,12 @@
                 <p><strong>Speciality:</strong> {{ doctor.speciality }}</p>
                 <p><strong>Location:</strong> {{ doctor.location }}</p>
                 <p><strong>Contact:</strong> {{ doctor.contact }}</p>
-                <button style="background:#05696b; color:white; padding:10px 15px; border:none; border-radius:6px; cursor:pointer;">Book Appointment</button>
+                <a href="{% url 'book_appointment' doctor.id %}">
+    <button style="background:#05696b; color:white; padding:10px 15px; border:none; border-radius:6px; cursor:pointer;">
+        Book Appointment
+    </button>
+</a>
+
             </div>
         {% empty %}
             <p style="text-align:center; color:#555;">No doctors found matching the criteria.</p>

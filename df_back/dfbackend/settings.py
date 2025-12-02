@@ -41,6 +41,12 @@ INSTALLED_APPS = [
 ]
 AUTH_USER_MODEL = 'dfhome.CustomerUser'
 
+#AUTHENTICATION_BACKENDS = [
+ #   "dfhome.backends.EmailBackend",
+ #   'django.contrib.auth.backends.ModelBackend',
+#]
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
