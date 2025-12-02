@@ -14,7 +14,6 @@
       justify-content: center;
       margin-bottom: 20px;
     }
-
     .tab-buttons button {
       flex: 1;
       padding: 12px;
@@ -24,26 +23,23 @@
       cursor: pointer;
       font-weight: bold;
     }
-
     .tab-buttons button.active {
       background: #05696b;
       color: white;
     }
-
-    /* Tab content */
     .tab-content {
       display: none;
     }
-
     .tab-content.active {
       display: block;
     }
+    .error-message { color: red; text-align: center; margin-bottom: 10px; }
   </style>
 </head>
 <body>
   <!-- Header -->
   <header>
-    <img src= "{%static 'images/flogo1.png'%}" alt="DocFinder Logo" style="float:left;width:86px;height:86px;">
+    <img src="{% static 'images/flogo1.png' %}" alt="DocFinder Logo" style="float:left;width:86px;height:86px;">
     <h1 style="text-align: center;">DocFinder</h1>
     <h5 style="text-align: center;">Find the right doctor, anytime, anywhere</h5>
   </header>
@@ -53,43 +49,54 @@
     <a href="{% url 'base' %}">Home</a>
     <a href="{% url 'home' %}">About us</a>
     <a href="{% url 'signup' %}">Login/Signup</a>
-    <a href="doctors.html">Find Doctors</a>  
+    <a href="{% url 'find_doctors' %}">Find Doctors</a>  
   </nav>
 
-  <!-- Authentication Section -->
   <div class="form-container">
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="error-message">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
     <!-- Tab Buttons -->
     <div class="tab-buttons">
       <button id="loginTab" class="active" onclick="showTab('login')">Login</button>
       <button id="signupTab" onclick="showTab('signup')">Sign Up</button>
     </div>
 
-    
     <!-- Login Form -->
-<div id="login" class="tab-content active">
-  <h2>Login</h2>
-  <form onsubmit="return handleLogin(event)"> <!-- Added JS handler -->
-    <label for="login-role">I am a:</label>
-    <select id="login-role" name="role" required>
-      <option value="">-- Select Role --</option>
-      <option value="doctor">Doctor</option>
-      <option value="patient">Patient</option>
-    </select>
+    <div id="login" class="tab-content active">
+      <h2>Login</h2>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="login">
 
-    <label for="login-username">Username:</label>
-    <input type="text" id="login-username" name="username" placeholder="Enter username" required>
+        <label for="login-role">I am a:</label>
+        <select id="login-role" name="role" required>
+          <option value="">-- Select Role --</option>
+          <option value="doctor">Doctor</option>
+          <option value="patient">Patient</option>
+        </select>
 
-    <label for="login-password">Password:</label>
-    <input type="password" id="login-password" name="password" placeholder="Enter password" required>
+        <label for="login-email">Email:</label>
+        <input type="email" id="login-email" name="email" placeholder="Enter email" required>
 
-    <button type="submit">Login</button>
-  </form>
-</div>
-    
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password" name="password" placeholder="Enter password" required>
+
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
     <!-- Signup Form -->
-<div id="signup" class="tab-content">
+    <div id="signup" class="tab-content">
       <h2>Sign Up</h2>
-      <form>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="signup">
+
         <label for="signup-role">I am a:</label>
         <select id="signup-role" name="role" required>
           <option value="">-- Select Role --</option>
@@ -97,8 +104,8 @@
           <option value="patient">Patient</option>
         </select>
 
-        <label for="signup-username">Username:</label>
-        <input type="text" id="signup-username" name="username" placeholder="Enter username" required>
+        <label for="signup-email">Email:</label>
+        <input type="email" id="signup-email" name="email" placeholder="Enter email" required>
 
         <label for="signup-password">Password:</label>
         <input type="password" id="signup-password" name="password" placeholder="Enter password" required>
@@ -111,51 +118,19 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     <p>&copy; 2025 DocFinder | All Rights Reserved</p>
   </footer>
 
-  <!-- JavaScript for Tabs -->
-  
   <script>
-  function showTab(tabName) {
-    // Hide all tabs
-    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-    document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
-
-    // Show selected tab
-    document.getElementById(tabName).classList.add('active');
-    document.getElementById(tabName + 'Tab').classList.add('active');
-  }
-
-  // Handle login redirection
-  function handleLogin(event) {
-    event.preventDefault(); // Prevent page reload
-
-    let role = document.getElementById("login-role").value;
-    let username = document.getElementById("login-username").value;
-    let password = document.getElementById("login-password").value;
-
-    if (role === "" || username === "" || password === "") {
-      alert("Please fill all fields.");
-      return false;
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabName).classList.add('active');
+      document.getElementById(tabName + 'Tab').classList.add('active');
     }
-
-    // login validation
-    if (role === "doctor") {
-      alert("Welcome Doctor " + username + "!");
-      window.location.href = "doctor_dash.html";  // Redirect to doctor dashboard
-    } else if (role === "patient") {
-      alert("Welcome Patient " + username + "!");
-      window.location.href = "patient_dash.html"; // Redirect to patient dashboard
-    } else {
-      alert("Invalid role selected!");
-    }
-
-    return false;
-  }
-</script>
-
+  </script>
 </body>
 </html>
+
+      
